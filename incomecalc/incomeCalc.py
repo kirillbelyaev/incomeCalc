@@ -39,7 +39,7 @@ class IncomeCalc(wx.Frame):
         panel.SetSizer(sizer)
 
         box = wx.BoxSizer(wx.VERTICAL)
-        labelTxt = wx.StaticText(panel, -1, "Daily Sum")
+        labelTxt = wx.StaticText(panel, -1, "Daily Sum:")
 
         box.Add(labelTxt, 1, wx.ALIGN_LEFT, 5)
         self.txtBox = wx.TextCtrl(panel)
@@ -62,6 +62,11 @@ class IncomeCalc(wx.Frame):
         # sizer.Add(button, 0, wx.ALIGN_LEFT)
         sizer.Add(buttonMT)
         buttonMT.Bind(wx.EVT_BUTTON, self.onButtonShowMonthlyTotal)
+
+        buttonMA = wx.Button(panel, wx.ID_ANY, "Show \n Monthly Avg   \t", (100, 100))
+        # sizer.Add(button, 0, wx.ALIGN_LEFT)
+        sizer.Add(buttonMA)
+        buttonMA.Bind(wx.EVT_BUTTON, self.onButtonShowMonthlyAvg)
 
         # create a menu bar
         self.makeMenuBar()
@@ -166,6 +171,12 @@ class IncomeCalc(wx.Frame):
 
         if n is not None:
             wx.MessageBox("Monthly total: " + str(n[0]))
+
+    def onButtonShowMonthlyAvg(self, event):
+        n = showMonthlyAvgIncomeTbl()
+
+        if n is not None:
+            wx.MessageBox("Monthly avg: " + str(n[0]))
 
     def OnKeyTyped(self, event):
         self.num = event.GetString()

@@ -42,15 +42,11 @@ def showMonthlyIncomeTbl():
 
     return res
 
-
 def showMayMonthlySumIncomeTbl():
     today = datetime.date.today()
     current_year = today.year
-    cur.execute("SELECT sum(sum) FROM income WHERE date like '" + current_year.__str__() + "-05-%';")
+    cur.execute("SELECT sum(sum) AS sum FROM income WHERE date like '" + current_year.__str__() + "-05-%';")
     res = cur.fetchone()
-
-    print("current year: ", current_year)
-    print("total sum: ", res)
 
     return res
 
@@ -59,13 +55,18 @@ def showMonthlySumIncomeTbl():
     current_year = today.year
     current_month = today.strftime("%m")
 
-    cur.execute("SELECT sum(sum) FROM income WHERE date like '" + current_year.__str__() + "-" + current_month.__str__() + "-%';")
+    cur.execute("SELECT sum(sum) AS sum FROM income WHERE date like '" + current_year.__str__() + "-" + current_month.__str__() + "-%';")
     res = cur.fetchone()
 
-    print("today: ", today)
-    print("current year: ", current_year)
-    print("current month: ", current_month)
-    print("total sum: ", res)
+    return res
+
+def showMonthlyAvgIncomeTbl():
+    today = datetime.date.today()
+    current_year = today.year
+    current_month = today.strftime("%m")
+
+    cur.execute("SELECT AVG(sum) AS avg FROM income WHERE date like '" + current_year.__str__() + "-" + current_month.__str__() + "-%';")
+    res = cur.fetchone()
 
     return res
 
@@ -81,7 +82,7 @@ def showIncomeTblCurrRecord():
     cur.execute("SELECT sum AS sum FROM income where date = '" + current_date.__str__() + "';" )
     res = cur.fetchone()
 
-    print("sum: " + str(res) )
+    #print("sum: " + str(res) )
 
     return res
 
