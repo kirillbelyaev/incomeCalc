@@ -13,7 +13,7 @@
 
 import wx
 
-from db_module import *
+from incomecalc.dbmodule import *
 
 class IncomeCalc(wx.Frame):
 

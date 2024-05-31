@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # * Income Calculator
 # *
 # * Copyright (C) 2024 Kirill A Belyaev
