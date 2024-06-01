@@ -138,7 +138,8 @@ class IncomeCalc(wx.Frame):
     def OnAbout(self, event):
         """Display an About Dialog"""
         wx.MessageBox(
-            "Income Calculator version 0.1",
+            "Income Calculator \n"
+            "Version 0.1",
             "About Income Calculator",
             wx.OK | wx.ICON_INFORMATION,
         )
