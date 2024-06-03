@@ -93,15 +93,14 @@ class IncomeCalc(wx.Frame):
         # the same event
         funcItem = fileMenu.Append(
             -1,
-            "Show Monthly Records",
-            "Show May Stat Report",
+            "Show Monthly Records"
         )
 
         fileMenu.AppendSeparator()
 
         funcItem1 = fileMenu.Append(
             -1,
-            "Show May Stat Report",
+            "Show May Stat Report"
         )
 
         fileMenu.AppendSeparator()
