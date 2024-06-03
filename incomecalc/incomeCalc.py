@@ -14,6 +14,7 @@
 import wx
 
 from incomecalc.dbmodule import *
+import wx.lib.agw.aquabutton as AB
 
 class IncomeCalc(wx.Frame):
 
@@ -21,26 +22,27 @@ class IncomeCalc(wx.Frame):
 
     def __init__(self, parent, title):
         # ensure the parent's __init__ is called
-        super(IncomeCalc, self).__init__(parent, size=(220, 300))
+        super(IncomeCalc, self).__init__(parent, size=(220, 320))
 
         # create a panel in the frame
         panel = wx.Panel(self)
 
         # # put some text with a larger bold font on it
-        st = wx.StaticText(panel, label="Income Calc")
-        st.SetOwnForegroundColour('brown')
-        font = st.GetFont()
+        topLabelTxt = wx.StaticText(panel, label="Income Calc")
+        topLabelTxt.SetOwnForegroundColour('brown')
+        font = topLabelTxt.GetFont()
         font.PointSize += 8
         font = font.Bold()
-        st.SetFont(font)
+        topLabelTxt.SetFont(font)
 
         # and create a sizer to manage the layout of child widgets
         sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(st, wx.SizerFlags().Border(wx.TOP | wx.LEFT, 5))
+        sizer.Add(topLabelTxt, wx.SizerFlags().Border(wx.TOP | wx.LEFT, 5))
         panel.SetSizer(sizer)
 
         box = wx.BoxSizer(wx.VERTICAL)
-        labelTxt = wx.StaticText(panel, -1, "Daily Sum:")
+        labelTxt = wx.StaticText(panel, -1, "Day Sum:")
+        labelTxt.SetOwnForegroundColour('blue')
 
         box.Add(labelTxt, 1, wx.ALIGN_LEFT, 5)
         self.txtBox = wx.TextCtrl(panel)
@@ -49,22 +51,35 @@ class IncomeCalc(wx.Frame):
         self.txtBox.Bind(wx.EVT_TEXT, self.OnKeyTyped)
         sizer.Add(box)
 
-        button = wx.Button(panel, wx.ID_ANY, "Add Daily Sum \t", (100,100) )
+        #button = wx.Button(panel, wx.ID_ANY, "Add Daily Sum \t", (100,100) )
+        button = AB.AquaButton(panel, wx.ID_ANY, None, "Add Day Sum \t\t" )
+        button.SetForegroundColour("blue")
+        button.SetBestSize()
+        #button.SetPulseOnFocus(True)
         #sizer.Add(button, 0, wx.ALIGN_LEFT)
         sizer.Add(button)
         button.Bind(wx.EVT_BUTTON, self.onButtonAddDailySum)
 
-        buttonR = wx.Button(panel, wx.ID_ANY, "Show Daily Sum ", (100, 100))
+        #buttonDS = wx.Button(panel, wx.ID_ANY, "Show Daily Sum ", (100, 100))
+        buttonDS = AB.AquaButton(panel, wx.ID_ANY, None, "Show Day Sum \t")
+        buttonDS.SetForegroundColour("blue")
+        buttonDS.SetBestSize()
         # sizer.Add(button, 0, wx.ALIGN_LEFT)
-        sizer.Add(buttonR)
-        buttonR.Bind(wx.EVT_BUTTON, self.onButtonShowDailySum)
+        sizer.Add(buttonDS)
+        buttonDS.Bind(wx.EVT_BUTTON, self.onButtonShowDailySum)
 
-        buttonMT = wx.Button(panel, wx.ID_ANY, "Show \n Monthly Total \t", (100, 100))
+        #buttonMT = wx.Button(panel, wx.ID_ANY, "Show \n Monthly Total \t", (100, 100))
+        buttonMT = AB.AquaButton(panel, wx.ID_ANY, None, "Show Month Ttl\t")
+        buttonMT.SetForegroundColour("blue")
+        buttonMT.SetBestSize()
         # sizer.Add(button, 0, wx.ALIGN_LEFT)
         sizer.Add(buttonMT)
         buttonMT.Bind(wx.EVT_BUTTON, self.onButtonShowMonthlyTotal)
 
-        buttonMA = wx.Button(panel, wx.ID_ANY, "Show \n Monthly Avg   \t", (100, 100))
+        #buttonMA = wx.Button(panel, wx.ID_ANY, "Show \n Monthly Avg   \t", (100, 100))
+        buttonMA = AB.AquaButton(panel, wx.ID_ANY, None, "Show Month Avg")
+        buttonMA.SetForegroundColour("blue")
+        buttonMA.SetBestSize()
         # sizer.Add(button, 0, wx.ALIGN_LEFT)
         sizer.Add(buttonMA)
         buttonMA.Bind(wx.EVT_BUTTON, self.onButtonShowMonthlyAvg)
