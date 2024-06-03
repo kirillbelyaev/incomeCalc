@@ -27,7 +27,7 @@ class IncomeCalc(wx.Frame):
         panel = wx.Panel(self)
 
         # # put some text with a larger bold font on it
-        st = wx.StaticText(panel, label="Income Tracker")
+        st = wx.StaticText(panel, label="Income Calc")
         st.SetOwnForegroundColour('brown')
         font = st.GetFont()
         font.PointSize += 8
@@ -74,7 +74,7 @@ class IncomeCalc(wx.Frame):
 
         # and a status bar
         self.CreateStatusBar()
-        self.SetStatusText("Welcome to Income Tracker")
+        self.SetStatusText("Welcome to Income Calc")
 
         self.Centre()
         self.Show()
