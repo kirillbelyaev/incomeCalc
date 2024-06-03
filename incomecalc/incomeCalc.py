@@ -43,6 +43,9 @@ class IncomeCalc(wx.Frame):
         box = wx.BoxSizer(wx.VERTICAL)
         labelTxt = wx.StaticText(panel, -1, "Day Sum:")
         labelTxt.SetOwnForegroundColour('blue')
+        font = labelTxt.GetFont()
+        font = font.Bold()
+        labelTxt.SetFont(font)
 
         box.Add(labelTxt, 1, wx.ALIGN_LEFT, 5)
         self.txtBox = wx.TextCtrl(panel)
