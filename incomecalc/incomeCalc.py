@@ -27,9 +27,10 @@ class IncomeCalc(wx.Frame):
         panel = wx.Panel(self)
 
         # # put some text with a larger bold font on it
-        st = wx.StaticText(panel, label="Income Tracker Software")
+        st = wx.StaticText(panel, label="Income Tracker")
+        st.SetOwnForegroundColour('brown')
         font = st.GetFont()
-        font.PointSize += 10
+        font.PointSize += 8
         font = font.Bold()
         st.SetFont(font)
 
@@ -92,10 +93,19 @@ class IncomeCalc(wx.Frame):
         # the same event
         funcItem = fileMenu.Append(
             -1,
-            "Show Monthly Report",
-            "Show monthly report on all daily entries",
+            "Show Monthly Records",
+            "Show May Stat Report",
         )
+
         fileMenu.AppendSeparator()
+
+        funcItem1 = fileMenu.Append(
+            -1,
+            "Show May Stat Report",
+        )
+
+        fileMenu.AppendSeparator()
+
         # When using a stock ID we don't need to specify the menu item's
         # label
         exitItem = fileMenu.Append(wx.ID_EXIT)
@@ -109,7 +119,7 @@ class IncomeCalc(wx.Frame):
         # platforms that support it those letters are underlined and can be
         # triggered from the keyboard.
         menuBar = wx.MenuBar()
-        menuBar.Append(fileMenu, "&File")
+        menuBar.Append(fileMenu, "&Report")
         menuBar.Append(helpMenu, "&Help")
 
         # Give the menu bar to the frame
@@ -119,6 +129,7 @@ class IncomeCalc(wx.Frame):
         # each of the menu items. That means that when that menu item is
         # activated then the associated handler function will be called.
         self.Bind(wx.EVT_MENU, self.showMonthlyReport, funcItem)
+        self.Bind(wx.EVT_MENU, self.showStatReportMay, funcItem1)
         self.Bind(wx.EVT_MENU, self.OnExit, exitItem)
         self.Bind(wx.EVT_MENU, self.OnAbout, aboutItem)
 
@@ -127,13 +138,22 @@ class IncomeCalc(wx.Frame):
         self.Close(True)
 
     def showMonthlyReport(self, event):
-        """Say hello to the user."""
         r = showMonthlyIncomeTbl()
 
         if r is not None:
             wx.MessageBox("Monthly list: \n" + r.__str__().strip('[]').replace("),", ")\n"))
         else:
             wx.MessageBox("No data available")
+
+    def showStatReportMay(self, event):
+        r = showMaySumIncomeTbl()
+        r1 = showMayAvgIncomeTbl()
+
+        if r is not None and r1 is not None:
+            wx.MessageBox("May Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
+        else:
+            wx.MessageBox("No data available")
+
 
     def OnAbout(self, event):
         """Display an About Dialog"""
@@ -162,7 +182,7 @@ class IncomeCalc(wx.Frame):
             wx.MessageBox("Daily sum: " + str(n[0]))
 
     def onButtonShowMonthlyTotalMay(self, event):
-        n = showMayMonthlySumIncomeTbl()
+        n = showMaySumIncomeTbl()
 
         if n is not None:
             wx.MessageBox("May total: " + str(n[0]))
