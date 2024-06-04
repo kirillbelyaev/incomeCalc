@@ -119,7 +119,21 @@ class IncomeCalc(wx.Frame):
 
         fileMenu.AppendSeparator()
 
-        funcItem1 = fileMenu.Append(
+        funcItemMarch = fileMenu.Append(
+            -1,
+            "Show March Stat Report"
+        )
+
+        fileMenu.AppendSeparator()
+
+        funcItemApril = fileMenu.Append(
+            -1,
+            "Show April Stat Report"
+        )
+
+        fileMenu.AppendSeparator()
+
+        funcItemMay = fileMenu.Append(
             -1,
             "Show May Stat Report"
         )
@@ -149,7 +163,9 @@ class IncomeCalc(wx.Frame):
         # each of the menu items. That means that when that menu item is
         # activated then the associated handler function will be called.
         self.Bind(wx.EVT_MENU, self.showMonthlyReport, funcItem)
-        self.Bind(wx.EVT_MENU, self.showStatReportMay, funcItem1)
+        self.Bind(wx.EVT_MENU, self.showStatReportMarch, funcItemMarch)
+        self.Bind(wx.EVT_MENU, self.showStatReportApril, funcItemApril)
+        self.Bind(wx.EVT_MENU, self.showStatReportMay, funcItemMay)
         self.Bind(wx.EVT_MENU, self.OnExit, exitItem)
         self.Bind(wx.EVT_MENU, self.OnAbout, aboutItem)
 
@@ -165,6 +181,24 @@ class IncomeCalc(wx.Frame):
         else:
             wx.MessageBox("No data available")
 
+    def showStatReportMarch(self, event):
+        r = showMarchSumIncomeTbl()
+        r1 = showMarchAvgIncomeTbl()
+
+        if r is not None and r1 is not None:
+            wx.MessageBox("March Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
+        else:
+            wx.MessageBox("No data available")
+
+    def showStatReportApril(self, event):
+        r = showAprilSumIncomeTbl()
+        r1 = showAprilAvgIncomeTbl()
+
+        if r is not None and r1 is not None:
+            wx.MessageBox("April Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
+        else:
+            wx.MessageBox("No data available")
+
     def showStatReportMay(self, event):
         r = showMaySumIncomeTbl()
         r1 = showMayAvgIncomeTbl()
@@ -173,7 +207,6 @@ class IncomeCalc(wx.Frame):
             wx.MessageBox("May Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
         else:
             wx.MessageBox("No data available")
-
 
     def OnAbout(self, event):
         """Display an About Dialog"""

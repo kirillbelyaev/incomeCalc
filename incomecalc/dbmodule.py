@@ -59,6 +59,39 @@ def showMayAvgIncomeTbl():
 
     return res
 
+def showMarchSumIncomeTbl():
+    today = datetime.date.today()
+    current_year = today.year
+    cur.execute("SELECT SUM(sum) AS sum FROM income WHERE date like '" + current_year.__str__() + "-03-%';")
+    res = cur.fetchone()
+
+    return res
+
+def showMarchAvgIncomeTbl():
+    today = datetime.date.today()
+    current_year = today.year
+    cur.execute("SELECT AVG(sum) AS avg FROM income WHERE date like '" + current_year.__str__() + "-03-%';")
+    res = cur.fetchone()
+
+    return res
+
+def showAprilSumIncomeTbl():
+    today = datetime.date.today()
+    current_year = today.year
+    cur.execute("SELECT SUM(sum) AS sum FROM income WHERE date like '" + current_year.__str__() + "-04-%';")
+    res = cur.fetchone()
+
+    return res
+
+def showAprilAvgIncomeTbl():
+    today = datetime.date.today()
+    current_year = today.year
+    cur.execute("SELECT AVG(sum) AS avg FROM income WHERE date like '" + current_year.__str__() + "-04-%';")
+    res = cur.fetchone()
+
+    return res
+
+
 def showMonthlySumIncomeTbl():
     today = datetime.date.today()
     current_year = today.year
@@ -78,7 +111,6 @@ def showMonthlyAvgIncomeTbl():
     res = cur.fetchone()
 
     return res
-
 
 def showIncomeTblRecord(dt):
     cur.execute("SELECT sum AS sum FROM income where date = '" + dt + "';")
