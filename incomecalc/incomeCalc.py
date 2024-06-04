@@ -27,6 +27,9 @@ class IncomeCalc(wx.Frame):
         # create a panel in the frame
         panel = wx.Panel(self)
 
+        #panel.SetBackgroundColour('white')
+        panel.SetBackgroundColour('TURQUOISE')
+
         # # put some text with a larger bold font on it
         topLabelTxt = wx.StaticText(panel, label="Income Calc")
         topLabelTxt.SetOwnForegroundColour('brown')
