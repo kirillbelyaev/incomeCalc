@@ -17,7 +17,7 @@ db_name = "calc.db"
 conn = sqlite3.connect(db_name)
 cur = conn.cursor()
 
-def create_db():
+def createDb():
     #conn = sqlite3.connect(db_name)
     #cur = conn.cursor()
 
@@ -91,6 +91,21 @@ def showAprilAvgIncomeTbl():
 
     return res
 
+def showJuneSumIncomeTbl():
+    today = datetime.date.today()
+    current_year = today.year
+    cur.execute("SELECT SUM(sum) AS sum FROM income WHERE date like '" + current_year.__str__() + "-06-%';")
+    res = cur.fetchone()
+
+    return res
+
+def showJuneAvgIncomeTbl():
+    today = datetime.date.today()
+    current_year = today.year
+    cur.execute("SELECT AVG(sum) AS avg FROM income WHERE date like '" + current_year.__str__() + "-06-%';")
+    res = cur.fetchone()
+
+    return res
 
 def showMonthlySumIncomeTbl():
     today = datetime.date.today()
@@ -143,4 +158,4 @@ def updateIncomeTblRecord(sum):
     print("update committed. ")
 
 
-create_db()
+createDb()
