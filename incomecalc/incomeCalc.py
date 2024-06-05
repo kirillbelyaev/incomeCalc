@@ -22,7 +22,7 @@ class IncomeCalc(wx.Frame):
 
     def __init__(self, parent, title):
         # ensure the parent's __init__ is called
-        super(IncomeCalc, self).__init__(parent, size=(220, 320))
+        super(IncomeCalc, self).__init__(parent, size=(175, 320))
 
         # create a panel in the frame
         panel = wx.Panel(self)
