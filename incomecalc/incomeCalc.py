@@ -147,6 +147,13 @@ class IncomeCalc(wx.Frame):
 
         fileMenu.AppendSeparator()
 
+        funcItemJuly = fileMenu.Append(
+            -1,
+            "Show July Stat Report"
+        )
+
+        fileMenu.AppendSeparator()
+
         # When using a stock ID we don't need to specify the menu item's
         # label
         exitItem = fileMenu.Append(wx.ID_EXIT)
@@ -174,6 +181,7 @@ class IncomeCalc(wx.Frame):
         self.Bind(wx.EVT_MENU, self.showStatReportApril, funcItemApril)
         self.Bind(wx.EVT_MENU, self.showStatReportMay, funcItemMay)
         self.Bind(wx.EVT_MENU, self.showStatReportJune, funcItemJune)
+        self.Bind(wx.EVT_MENU, self.showStatReportJuly, funcItemJuly)
         self.Bind(wx.EVT_MENU, self.OnExit, exitItem)
         self.Bind(wx.EVT_MENU, self.OnAbout, aboutItem)
 
@@ -222,6 +230,15 @@ class IncomeCalc(wx.Frame):
 
         if r is not None and r1 is not None:
             wx.MessageBox("June Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
+        else:
+            wx.MessageBox("No data available")
+
+    def showStatReportJuly(self, event):
+        r = showJulySumIncomeTbl()
+        r1 = showJulyAvgIncomeTbl()
+
+        if r is not None and r1 is not None:
+            wx.MessageBox("July Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
         else:
             wx.MessageBox("No data available")
 
