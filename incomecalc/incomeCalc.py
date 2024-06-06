@@ -18,6 +18,7 @@ import wx.lib.agw.aquabutton as AB
 
 class IncomeCalc(wx.Frame):
 
+    calcVersion = '0.5'
     num = "";
 
     def __init__(self, parent, title):
@@ -154,6 +155,13 @@ class IncomeCalc(wx.Frame):
 
         fileMenu.AppendSeparator()
 
+        funcItemAugust = fileMenu.Append(
+            -1,
+            "Show August Stat Report"
+        )
+
+        fileMenu.AppendSeparator()
+
         # When using a stock ID we don't need to specify the menu item's
         # label
         exitItem = fileMenu.Append(wx.ID_EXIT)
@@ -167,7 +175,7 @@ class IncomeCalc(wx.Frame):
         # platforms that support it those letters are underlined and can be
         # triggered from the keyboard.
         menuBar = wx.MenuBar()
-        menuBar.Append(fileMenu, "&Report")
+        menuBar.Append(fileMenu, "&Reports")
         menuBar.Append(helpMenu, "&Help")
 
         # Give the menu bar to the frame
@@ -182,6 +190,7 @@ class IncomeCalc(wx.Frame):
         self.Bind(wx.EVT_MENU, self.showStatReportMay, funcItemMay)
         self.Bind(wx.EVT_MENU, self.showStatReportJune, funcItemJune)
         self.Bind(wx.EVT_MENU, self.showStatReportJuly, funcItemJuly)
+        self.Bind(wx.EVT_MENU, self.showStatReportAugust, funcItemAugust)
         self.Bind(wx.EVT_MENU, self.OnExit, exitItem)
         self.Bind(wx.EVT_MENU, self.OnAbout, aboutItem)
 
@@ -242,11 +251,20 @@ class IncomeCalc(wx.Frame):
         else:
             wx.MessageBox("No data available")
 
+    def showStatReportAugust(self, event):
+        r = showAugustSumIncomeTbl()
+        r1 = showAugustAvgIncomeTbl()
+
+        if r is not None and r1 is not None:
+            wx.MessageBox("August Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
+        else:
+            wx.MessageBox("No data available")
+
     def OnAbout(self, event):
         """Display an About Dialog"""
         wx.MessageBox(
             "Income Calculator \n"
-            "Version 0.4",
+            "Version " + self.calcVersion,
             "About Income Calculator",
             wx.OK | wx.ICON_INFORMATION,
         )
