@@ -18,7 +18,7 @@ import wx.lib.agw.aquabutton as AB
 
 class IncomeCalc(wx.Frame):
 
-    calcVersion = '0.5'
+    calcVersion = '0.6'
     num = "";
 
     def __init__(self, parent, title):
@@ -169,6 +169,13 @@ class IncomeCalc(wx.Frame):
 
         fileMenu.AppendSeparator()
 
+        funcItemOctober = fileMenu.Append(
+            -1,
+            "Show October Stat Report"
+        )
+
+        fileMenu.AppendSeparator()
+
         # When using a stock ID we don't need to specify the menu item's
         # label
         exitItem = fileMenu.Append(wx.ID_EXIT)
@@ -199,6 +206,7 @@ class IncomeCalc(wx.Frame):
         self.Bind(wx.EVT_MENU, self.showStatReportJuly, funcItemJuly)
         self.Bind(wx.EVT_MENU, self.showStatReportAugust, funcItemAugust)
         self.Bind(wx.EVT_MENU, self.showStatReportSeptember, funcItemSeptember)
+        self.Bind(wx.EVT_MENU, self.showStatReportOctober, funcItemOctober)
         self.Bind(wx.EVT_MENU, self.OnExit, exitItem)
         self.Bind(wx.EVT_MENU, self.OnAbout, aboutItem)
 
@@ -274,6 +282,15 @@ class IncomeCalc(wx.Frame):
 
         if r is not None and r1 is not None:
             wx.MessageBox("September Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
+        else:
+            wx.MessageBox("No data available")
+
+    def showStatReportOctober(self, event):
+        r = showOctoberSumIncomeTbl()
+        r1 = showOctoberAvgIncomeTbl()
+
+        if r is not None and r1 is not None:
+            wx.MessageBox("October Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
         else:
             wx.MessageBox("No data available")
 
