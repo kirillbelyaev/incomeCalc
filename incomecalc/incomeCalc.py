@@ -14,7 +14,7 @@
 import wx
 
 from incomecalc.dbmodule import *
-import wx.lib.agw.aquabutton as AB
+import wx.lib.agw.aquabutton as ab
 
 class IncomeCalc(wx.Frame):
 
@@ -59,7 +59,7 @@ class IncomeCalc(wx.Frame):
         sizer.Add(box)
 
         #button = wx.Button(panel, wx.ID_ANY, "Add Daily Sum \t", (100,100) )
-        button = AB.AquaButton(panel, wx.ID_ANY, None, "Add Day Sum \t\t" )
+        button = ab.AquaButton(panel, wx.ID_ANY, None, "Add Day Sum \t\t")
         button.SetForegroundColour("blue")
         button.SetBestSize()
         #button.SetPulseOnFocus(True)
@@ -68,7 +68,7 @@ class IncomeCalc(wx.Frame):
         button.Bind(wx.EVT_BUTTON, self.onButtonAddDailySum)
 
         #buttonDS = wx.Button(panel, wx.ID_ANY, "Show Daily Sum ", (100, 100))
-        buttonDS = AB.AquaButton(panel, wx.ID_ANY, None, "Show Day Sum \t")
+        buttonDS = ab.AquaButton(panel, wx.ID_ANY, None, "Show Day Sum \t")
         buttonDS.SetForegroundColour("blue")
         buttonDS.SetBestSize()
         # sizer.Add(button, 0, wx.ALIGN_LEFT)
@@ -76,7 +76,7 @@ class IncomeCalc(wx.Frame):
         buttonDS.Bind(wx.EVT_BUTTON, self.onButtonShowDailySum)
 
         #buttonMT = wx.Button(panel, wx.ID_ANY, "Show \n Monthly Total \t", (100, 100))
-        buttonMT = AB.AquaButton(panel, wx.ID_ANY, None, "Show Month Ttl\t")
+        buttonMT = ab.AquaButton(panel, wx.ID_ANY, None, "Show Month Ttl\t")
         buttonMT.SetForegroundColour("blue")
         buttonMT.SetBestSize()
         # sizer.Add(button, 0, wx.ALIGN_LEFT)
@@ -84,7 +84,7 @@ class IncomeCalc(wx.Frame):
         buttonMT.Bind(wx.EVT_BUTTON, self.onButtonShowMonthlyTotal)
 
         #buttonMA = wx.Button(panel, wx.ID_ANY, "Show \n Monthly Avg   \t", (100, 100))
-        buttonMA = AB.AquaButton(panel, wx.ID_ANY, None, "Show Month Avg")
+        buttonMA = ab.AquaButton(panel, wx.ID_ANY, None, "Show Month Avg")
         buttonMA.SetForegroundColour("blue")
         buttonMA.SetBestSize()
         # sizer.Add(button, 0, wx.ALIGN_LEFT)

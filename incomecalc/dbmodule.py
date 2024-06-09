@@ -171,7 +171,6 @@ def showOctoberAvgIncomeTbl():
 
     return res
 
-
 def showMonthlySumIncomeTbl():
     today = datetime.date.today()
     current_year = today.year
