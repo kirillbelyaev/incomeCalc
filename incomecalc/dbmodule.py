@@ -171,6 +171,22 @@ def showOctoberAvgIncomeTbl():
 
     return res
 
+def showNovemberSumIncomeTbl():
+    today = datetime.date.today()
+    current_year = today.year
+    cur.execute("SELECT SUM(sum) AS sum FROM income WHERE date like '" + current_year.__str__() + "-11-%';")
+    res = cur.fetchone()
+
+    return res
+
+def showNovemberAvgIncomeTbl():
+    today = datetime.date.today()
+    current_year = today.year
+    cur.execute("SELECT AVG(sum) AS avg FROM income WHERE date like '" + current_year.__str__() + "-11-%';")
+    res = cur.fetchone()
+
+    return res
+
 def showMonthlySumIncomeTbl():
     today = datetime.date.today()
     current_year = today.year
