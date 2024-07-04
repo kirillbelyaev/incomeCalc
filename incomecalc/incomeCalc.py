@@ -234,7 +234,7 @@ class IncomeCalc(wx.Frame):
         r = showMonthlyIncomeTbl()
 
         if r is not None:
-            wx.MessageBox("Monthly list: \n" + r.__str__().strip('[]').replace("),", ")\n"))
+            wx.MessageBox("Monthly list: \n" + r.__str__().strip('[]').replace("),", ")\n"), "Stat")
         else:
             wx.MessageBox("No data available")
 
