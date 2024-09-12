@@ -120,6 +120,13 @@ class IncomeCalc(wx.Frame):
 
         fileMenu.AppendSeparator()
 
+        funcItemJan = fileMenu.Append(
+            -1,
+            "Show January Stat Report"
+        )
+
+        fileMenu.AppendSeparator()
+
         funcItemMarch = fileMenu.Append(
             -1,
             "Show March Stat Report"
@@ -213,6 +220,7 @@ class IncomeCalc(wx.Frame):
         # each of the menu items. That means that when that menu item is
         # activated then the associated handler function will be called.
         self.Bind(wx.EVT_MENU, self.showMonthlyReport, funcItemCurrRecords)
+        self.Bind(wx.EVT_MENU, self.showStatReportJan, funcItemJan)
         self.Bind(wx.EVT_MENU, self.showStatReportMarch, funcItemMarch)
         self.Bind(wx.EVT_MENU, self.showStatReportApril, funcItemApril)
         self.Bind(wx.EVT_MENU, self.showStatReportMay, funcItemMay)
@@ -237,6 +245,16 @@ class IncomeCalc(wx.Frame):
             wx.MessageBox("Monthly list: \n" + r.__str__().strip('[]').replace("),", ")\n"), "Stat")
         else:
             wx.MessageBox("No data available")
+
+    def showStatReportJan(self, event):
+        r = showJanSumIncomeTbl()
+        r1 = showJanAvgIncomeTbl()
+
+        if r is not None and r1 is not None:
+            wx.MessageBox("January Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
+        else:
+            wx.MessageBox("No data available")
+
 
     def showStatReportMarch(self, event):
         r = showMarchSumIncomeTbl()
@@ -326,6 +344,15 @@ class IncomeCalc(wx.Frame):
 
         if r is not None and r1 is not None:
             wx.MessageBox("December Total/Avg: " + str(r[0]) + " / " + str(r1[0]), "Stat")
+        else:
+            wx.MessageBox("No data available")
+
+    def showStatReportJan(self, event):
+        r = showJanSumIncomeTbl()
+        r1 = showJanAvgIncomeTbl()
+
+        if r is not None and r1 is not None:
+            wx.MessageBox("January Total/Avg: " + str(r[0]) + " / " + str(r1[0]), "Stat")
         else:
             wx.MessageBox("No data available")
 
