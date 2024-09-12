@@ -19,7 +19,7 @@ import wx.lib.agw.aquabutton as ab
 class IncomeCalc(wx.Frame):
 
     calcVersion = '0.6'
-    num = "";
+    num = ""
 
     def __init__(self, parent, title):
         # ensure the parent's __init__ is called
@@ -243,15 +243,6 @@ class IncomeCalc(wx.Frame):
 
         if r is not None:
             wx.MessageBox("Monthly list: \n" + r.__str__().strip('[]').replace("),", ")\n"), "Stat")
-        else:
-            wx.MessageBox("No data available")
-
-    def showStatReportJan(self, event):
-        r = showJanSumIncomeTbl()
-        r1 = showJanAvgIncomeTbl()
-
-        if r is not None and r1 is not None:
-            wx.MessageBox("January Total/Avg: " + str(r[0]) + " / " + str(r1[0]))
         else:
             wx.MessageBox("No data available")
 
