@@ -127,6 +127,13 @@ class IncomeCalc(wx.Frame):
 
         fileMenu.AppendSeparator()
 
+        funcItemFeb = fileMenu.Append(
+            -1,
+            "Show February Stat Report"
+        )
+
+        fileMenu.AppendSeparator()
+
         funcItemMarch = fileMenu.Append(
             -1,
             "Show March Stat Report"
@@ -221,6 +228,7 @@ class IncomeCalc(wx.Frame):
         # activated then the associated handler function will be called.
         self.Bind(wx.EVT_MENU, self.showMonthlyReport, funcItemCurrRecords)
         self.Bind(wx.EVT_MENU, self.showStatReportJan, funcItemJan)
+        self.Bind(wx.EVT_MENU, self.showStatReportFeb, funcItemFeb)
         self.Bind(wx.EVT_MENU, self.showStatReportMarch, funcItemMarch)
         self.Bind(wx.EVT_MENU, self.showStatReportApril, funcItemApril)
         self.Bind(wx.EVT_MENU, self.showStatReportMay, funcItemMay)
@@ -344,6 +352,15 @@ class IncomeCalc(wx.Frame):
 
         if r is not None and r1 is not None:
             wx.MessageBox("January Total/Avg: " + str(r[0]) + " / " + str(r1[0]), "Stat")
+        else:
+            wx.MessageBox("No data available")
+
+    def showStatReportFeb(self, event):
+        r = showFebSumIncomeTbl()
+        r1 = showFebAvgIncomeTbl()
+
+        if r is not None and r1 is not None:
+            wx.MessageBox("February Total/Avg: " + str(r[0]) + " / " + str(r1[0]), "Stat")
         else:
             wx.MessageBox("No data available")
 
